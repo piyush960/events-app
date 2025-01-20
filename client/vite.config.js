@@ -8,7 +8,7 @@ export default defineConfig({
   
   define: {
   
-  'process.env.VITE_REACT_ENV':JSON.stringify(process.env.VITE_REACT_ENV)
+  'process.env.VITE_BACKEND_URL':JSON.stringify(process.env.VITE_BACKEND_URL)
   
   }
   

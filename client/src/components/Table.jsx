@@ -156,7 +156,6 @@ export default function ContactTable({onOpenModal, reload, setIsToastOpen, setTo
 			setIsLoading(false)
 			setToastMsg('Failed to Fetch Contacts')
 			setIsToastOpen(true)
-			console.log(e)
 		}
 	}
 

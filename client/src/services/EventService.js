@@ -1,8 +1,6 @@
 import axios from "axios"
 
-const env = import.meta.env.VITE_REACT_ENV
-
-const BACKEND_URL = "http://localhost:8000"
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
 export const processAuth = async () => {
   try {
@@ -30,7 +28,7 @@ export const exchangeTokens = async (oauthCode) => {
     })
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
