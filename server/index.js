@@ -11,7 +11,7 @@ app.use(cors({
   origin: process.env.FRONTEND_URL,
   credentials: true,
 }));
-app.use(express.json());client_id, client_secret, redirect_uris[0]
+app.use(express.json());
 
 const SCOPES = ['https://www.googleapis.com/auth/calendar.events', 'https://www.googleapis.com/auth/userinfo.profile',];
 
