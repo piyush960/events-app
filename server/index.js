@@ -5,7 +5,7 @@ import path from "path";
 import cors from 'cors';
 
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 app.use(cors({
   origin: 'http://localhost:5173',
@@ -19,9 +19,12 @@ const CREDENTIALS_PATH = path.join(process.cwd(), "credentials.json");
 
 async function loadClient() {
   try {
-    const credentials = JSON.parse(await fs.readFile(CREDENTIALS_PATH));
-    const { client_secret, client_id, redirect_uris } = credentials.web;
-    const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+    // const credentials = JSON.parse(await fs.readFile(CREDENTIALS_PATH));
+    // const { client_secret, client_id, redirect_uris } = credentials.web;
+    const client_id = process.env.CLIENT_ID;
+    const client_secret = process.env.CLIENT_SECRET;
+    const redirect_uri = process.env.REDIRECT_URI;
+    const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uri);
     return oAuth2Client;
   } catch (err) {
     console.log(err);
