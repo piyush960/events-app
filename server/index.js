@@ -8,10 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL,
   credentials: true,
 }));
-app.use(express.json());
+app.use(express.json());client_id, client_secret, redirect_uris[0]
 
 const SCOPES = ['https://www.googleapis.com/auth/calendar.events', 'https://www.googleapis.com/auth/userinfo.profile',];
 
