@@ -148,13 +148,14 @@ export default function ContactTable({onOpenModal, reload, setIsToastOpen, setTo
 			setIsLoading(true)
 			const tokens = window.sessionStorage.getItem("tokens");
 			const events = await get_events(tokens);
+			if (!Array.isArray(events)) throw new Error(`${events}`);
 			setRows([...events]);
 			setEventsData([...events]);
 			setIsLoading(false);
 		}
 		catch(e){
 			setIsLoading(false)
-			setToastMsg('Failed to Fetch Contacts')
+			setToastMsg(e?.message || e?.data?.message || 'Failed to Fetch Events')
 			setIsToastOpen(true)
 		}
 	}

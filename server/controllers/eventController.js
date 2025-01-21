@@ -20,7 +20,7 @@ const get_events = async (req, res, next) => {
 
     const events = response.data.items;
     if (!events || events.length === 0) {
-      res.send(["No upcoming events found."]);
+      res.send("No upcoming events found.");
     } else {
       res.status(200).json(events);
     }
