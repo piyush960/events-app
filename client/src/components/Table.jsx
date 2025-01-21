@@ -135,7 +135,7 @@ export default function ContactTable({onOpenModal, reload, setIsToastOpen, setTo
 	useEffect(() => {
 		const filterUtil = (date) => (new Date(date).toDateString());
 		if(filterDate){
-			const filteredData = rows.filter(r => (filterUtil(r.start.dateTime) === filterUtil(filterDate) || filterUtil(r.end.dateTime) === filterUtil(filterDate)));
+			const filteredData = eventsData.filter(r => (filterUtil(r.start.dateTime) === filterUtil(filterDate) || filterUtil(r.end.dateTime) === filterUtil(filterDate)));
 			setRows([...filteredData]);
 		}
 		else{

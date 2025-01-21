@@ -4,7 +4,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
 export const processAuth = async () => {
   try {
-    const response = await axios.get(`${BACKEND_URL}/auth`, {
+    const response = await axios.get(`${BACKEND_URL}/auth/process-auth`, {
       method: "GET",
       withCredentials: true,
       validateStatus: (status) => {
@@ -19,7 +19,7 @@ export const processAuth = async () => {
 
 export const exchangeTokens = async (oauthCode) => {
   try {
-    const response = await axios.get(`${BACKEND_URL}/oauth2callback?oauthCode=${oauthCode}`, {
+    const response = await axios.get(`${BACKEND_URL}/auth/oauth2callback?oauthCode=${oauthCode}`, {
       method: "GET",
       withCredentials: true,
       validateStatus: (status) => {
@@ -34,7 +34,7 @@ export const exchangeTokens = async (oauthCode) => {
 
 export const logoutUser = async (token) => {
   try {
-    const response = await axios.get(`${BACKEND_URL}/logout?token=${token}`, {
+    const response = await axios.get(`${BACKEND_URL}/auth/logout?token=${token}`, {
       method: "GET",
       withCredentials: true,
     })
@@ -45,7 +45,7 @@ export const logoutUser = async (token) => {
 
 export const get_events = async (tokens) => {
   try {
-    const response = await axios.get(`${BACKEND_URL}/events?tokens=${tokens}`, {
+    const response = await axios.get(`${BACKEND_URL}/api/events?tokens=${tokens}`, {
       method: "GET",
       withCredentials: true,
     })
@@ -58,7 +58,7 @@ export const get_events = async (tokens) => {
 
 export const add_event = async (data) => {
   try {
-    const response = await axios.post(`${BACKEND_URL}/events`, data, {
+    const response = await axios.post(`${BACKEND_URL}/api/events`, data, {
       method: "POST", 
       withCredentials: true,
       headers: {
@@ -72,7 +72,7 @@ export const add_event = async (data) => {
 
 export const update_event = async (data) => {
   try {
-    const response = await axios.put(`${BACKEND_URL}/events`, data, {
+    const response = await axios.put(`${BACKEND_URL}/api/events`, data, {
       method: "PUT", 
       withCredentials: true,
       headers: {
@@ -86,7 +86,7 @@ export const update_event = async (data) => {
 
 export const delete_event = async (eventId, tokens) => {
   try {
-    const response = await axios.delete(`${BACKEND_URL}/events?eventId=${eventId}&tokens=${tokens}`, {
+    const response = await axios.delete(`${BACKEND_URL}/api/events?eventId=${eventId}&tokens=${tokens}`, {
       method: "DELETE", 
       withCredentials: true,
     })
