@@ -114,3 +114,8 @@ The application will now be running on the following:
 - **`POST /api/events`**: Adds a new event to the user's Google Calendar.
 - **`PUT /api/events`**: Updates an existing event in the user's Google Calendar.
 - **`DELETE /api/events`**: Deletes a specified event from the user's Google Calendar.
+
+## Deployment URLs
+
+- **Frontend**: [Daily Dots - Vercel](https://dailydots.vercel.app)  
+- **Backend**: [Daily Dots - Render](https://dailydots.onrender.com)
