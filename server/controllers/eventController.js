@@ -13,20 +13,22 @@ const get_events = async (req, res, next) => {
     oAuth2Client.setCredentials(tokens);
 
     const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
-
+    console.log(filterDate);
     const calendarOptions = {
       calendarId: "primary",
       maxResults: 10,
       singleEvents: true,
       orderBy: "startTime",
       ...(isFilterByDate && {
-        timeMin: new Date(new Date(filterDate).setUTCHours(0, 0, 0, 0)).toISOString(),
-        timeMax: new Date(new Date(filterDate).setUTCHours(23, 59, 59, 999)).toISOString(),
+        timeMin: new Date(`${filterDate.split('T')[0]}T00:00:00.000Z`).toISOString(),
+        timeMax: new Date(`${filterDate.split('T')[0]}T23:59:59.999Z`).toISOString(),
       }),
       ...(isFilterByQuery && {
         q: filterQuery,
       }),
     };
+
+    console.log(calendarOptions);
 
     const response = await calendar.events.list(calendarOptions);
 
