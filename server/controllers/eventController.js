@@ -9,8 +9,6 @@ const get_events = async (req, res, next) => {
     const isFilterByQuery = req.query.filterByQuery;
     const filterQuery = req.query.filterQuery;
 
-    console.log(req.query);
-
     const oAuth2Client = await loadClient();
     oAuth2Client.setCredentials(tokens);
 
@@ -22,13 +20,15 @@ const get_events = async (req, res, next) => {
       singleEvents: true,
       orderBy: "startTime",
       ...(isFilterByDate && {
-        timeMin: new Date(filterDate).toISOString(),
+        timeMin: new Date(new Date(filterDate).setHours(0, 0, 0, 0)).toISOString(),
         timeMax: new Date(new Date(filterDate).setHours(23, 59, 59, 999)).toISOString(),
       }),
       ...(isFilterByQuery && {
         q: filterQuery,
       }),
     };
+
+    console.log(calendarOptions);
 
     const response = await calendar.events.list(calendarOptions);
 
