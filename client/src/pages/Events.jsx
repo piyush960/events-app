@@ -49,6 +49,7 @@ const Contact = () => {
 			setIsLoading(true)
 			const tokens = window.sessionStorage.getItem("tokens");
 			const filterDate = newValue.toISOString();
+			console.log(filterDate);
 			const events = await get_events_by_date({tokens, filterDate});
 			if (!Array.isArray(events)) throw new Error(`${events}`);
 			setRows([...events]);
