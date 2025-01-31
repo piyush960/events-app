@@ -28,8 +28,6 @@ const get_events = async (req, res, next) => {
       }),
     };
 
-    console.log(calendarOptions);
-
     const response = await calendar.events.list(calendarOptions);
 
     const events = response.data.items;
