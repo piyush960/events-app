@@ -20,8 +20,8 @@ const get_events = async (req, res, next) => {
       singleEvents: true,
       orderBy: "startTime",
       ...(isFilterByDate && {
-        timeMin: new Date(new Date(filterDate).setHours(0, 0, 0, 0)).toISOString(),
-        timeMax: new Date(new Date(filterDate).setHours(23, 59, 59, 999)).toISOString(),
+        timeMin: new Date(`${filterDate}T00:00:00.000Z`).toISOString(),
+        timeMax: new Date(`${filterDate}T23:59:59.999Z`).toISOString(),
       }),
       ...(isFilterByQuery && {
         q: filterQuery,
