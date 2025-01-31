@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { create_event, delete_event, get_events, udpate_event } from "../controllers/eventController.js";
+import { create_event, delete_event, getEventsByDate, get_events, udpate_event } from "../controllers/eventController.js";
 
 const router = Router()
 

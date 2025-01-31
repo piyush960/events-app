@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import { visuallyHidden } from '@mui/utils';
 import { Fab, LinearProgress } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
-import { delete_event, get_events } from '../services/EventService';
+import { delete_event, get_events, get_events_by_date } from '../services/EventService';
 
 const dateOptions = {
   year: 'numeric',	
@@ -111,54 +111,18 @@ function EnhancedTableHead(props) {
 						</TableSortLabel>
 					</TableCell>
 				))}
-				<TableCell>Edit/Delete</TableCell>
+				<TableCell>Action</TableCell>
 			</TableRow>
 		</TableHead>
 	);
 }
 
-export default function ContactTable({onOpenModal, reload, setIsToastOpen, setToastMsg, filterDate}) {
+export default function ContactTable({onOpenModal, rows, setIsToastOpen, setToastMsg, isLoading, setIsLoading}) {
 	const [order, setOrder] = useState('asc');
 	const [orderBy, setOrderBy] = useState('');
 	const [selected, setSelected] = useState([]);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(5);
-	const [eventsData, setEventsData] = useState([]);
-	const [rows, setRows] = useState([])
-	const [isLoading, setIsLoading] = useState(false)
-
-
-	useEffect(() => {
-		fetchEvents()
-	}, [reload])
-
-	useEffect(() => {
-		const filterUtil = (date) => (new Date(date).toDateString());
-		if(filterDate){
-			const filteredData = eventsData.filter(r => (filterUtil(r.start.dateTime) === filterUtil(filterDate) || filterUtil(r.end.dateTime) === filterUtil(filterDate)));
-			setRows([...filteredData]);
-		}
-		else{
-			setRows([...eventsData]);
-		}
-	}, [filterDate])
-
-	const fetchEvents = async () => {
-		try{
-			setIsLoading(true)
-			const tokens = window.sessionStorage.getItem("tokens");
-			const events = await get_events(tokens);
-			if (!Array.isArray(events)) throw new Error(`${events}`);
-			setRows([...events]);
-			setEventsData([...events]);
-			setIsLoading(false);
-		}
-		catch(e){
-			setIsLoading(false)
-			setToastMsg(e?.message || e?.data?.message || 'Failed to Fetch Events')
-			setIsToastOpen(true)
-		}
-	}
 
 	const visibleRows = useMemo(
 		() =>

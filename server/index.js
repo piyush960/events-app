@@ -3,8 +3,8 @@ import cors from 'cors';
 import authRoutes from './routes/authRoutes.js'
 import eventRoutes from './routes/eventRoutes.js'
 import errHandler from "./middlewares/errHandler.js";
-// import dotenv from 'dotenv';
-// dotenv.config();
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8000;
 

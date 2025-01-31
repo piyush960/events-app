@@ -4,14 +4,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { InputAdornment, TextField } from '@mui/material';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AccessTime, Description, Event, LocationOn } from '@mui/icons-material';
 import dayjs from 'dayjs';
-import { add_event, delete_event, update_event } from '../services/EventService';
-import { DateTimeRangePicker } from '@mui/x-date-pickers-pro';
+import { add_event, update_event } from '../services/EventService';
 
 const style = {
   position: 'absolute',

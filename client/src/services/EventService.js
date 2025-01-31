@@ -70,6 +70,32 @@ export const add_event = async (data) => {
   }
 }
 
+export const get_events_by_date = async (data) => {
+  try {
+    const response = await axios.get(`${BACKEND_URL}/api/events?tokens=${data.tokens}&filterByDate=1&filterDate=${data.filterDate}`, {
+      method: "GET",
+      withCredentials: true,
+    })
+    return response.data;
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
+
+export const get_events_by_query = async (data) => {
+  try {
+    const response = await axios.get(`${BACKEND_URL}/api/events?tokens=${data.tokens}&filterByQuery=1&filterQuery=${data.filterQuery}`, {
+      method: "GET",
+      withCredentials: true,
+    })
+    return response.data;
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
+
 export const update_event = async (data) => {
   try {
     const response = await axios.put(`${BACKEND_URL}/api/events`, data, {
